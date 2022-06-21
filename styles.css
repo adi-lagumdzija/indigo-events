@@ -78,7 +78,22 @@ p{
     	margin-left: 20px!important;
 	}
 }
-search{
+form{
+	margin: auto;
+	justify-content: center;
+
+}
+
+.form-control-borderless {
+    border: none;
+}
+
+.form-control-borderless:hover, .form-control-borderless:active, .form-control-borderless:focus {
+    border: none;
+    outline: none;
+    box-shadow: none;
+}
+/* search{
 	position: relative;
 	box-shadow: 0 0 40px rgba(51, 51, 51, .1);
 	  
@@ -113,13 +128,10 @@ search{
 	}
 
 	.search button{
-
-	 position: absolute;
-	 top: 95px;
-	 right: 5px;
+	 position: relative;
 	 height: 90px;
 	 width: 120px;
 	 background: blue;
 	 border-radius: 200px;
 
-	}
+	} */
