@@ -24,6 +24,10 @@ class EventService extends BaseService{
     return $this->dao->getEvent_by_city($city);
   }
 
+  public function get_event_by_id($id){
+    return $this->dao->get_event_by_id($id);
+  }
+
 
   public function add_event($event){
     try{

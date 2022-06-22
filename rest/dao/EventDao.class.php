@@ -20,5 +20,9 @@ class EventDao extends BaseDao{
   public function getEvent_by_city($city){
     return $this->query_unique("SELECT * FROM event WHERE city = :city", ["city"=>$city]);
   }
+
+  public function get_event_by_id($id){
+    return $this->query("SELECT * FROM event WHERE id = :id", ['id' => $id]);
+  }
  }
 ?>

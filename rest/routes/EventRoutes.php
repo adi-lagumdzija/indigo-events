@@ -17,6 +17,15 @@ Flight::route('GET /events', function(){
   Flight::json(Flight::eventService()->get_events($search, $offset, $limit, $order));
 });
 
+/**
+ * @OA\Get(path="/event/{id}", tags={"event"}, security={{"ApiKeyAuth":{}}},
+ *     @OA\Parameter(@OA\Schema(type="integer"), in="path", name="id", description="Id of event"),
+ *     @OA\Response(response="200", description="Fetch individual event")
+ * )
+ */
+Flight::route('GET /event/@id', function($id){
+  Flight::json(Flight::eventService()->get_by_id($id));
+});
 
 /**
 *  @OA\Post(path="/admin/add/event", description = "Add event to system.", tags={"x-admin", "event"},
