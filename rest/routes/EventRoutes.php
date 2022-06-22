@@ -1,5 +1,24 @@
 <?php
 /**
+ * @OA\Get(path="/events", tags={"event"}, security={{"ApiKeyAuth":{}}},
+ *     @OA\Parameter(@OA\Schema(type="integer"), in="query", name="offset", description="Offset for pagination"),
+ *     @OA\Parameter(@OA\Schema(type="integer"), in="query", name="limit", description="Limit for pagination"),
+ *     @OA\Parameter(@OA\Schema(type="string"), in="query", name="search", description="Search string for events. Case insensitive search."),
+ *     @OA\Parameter(@OA\Schema(type="string"), in="query", name="order", description="Sorting for return elements. -column_name ascending order by column_name or +column_name descending order by column_name"),
+ *     @OA\Response(response="200", description="List users from database")
+ * )
+ */
+Flight::route('GET /events', function(){
+  $offset = Flight::query('offset', 0);
+  $limit = Flight::query('limit', 25);
+  $search = Flight::query('search');
+  $order = Flight::query('order', "-id");
+
+  Flight::json(Flight::eventService()->get_events($search, $offset, $limit, $order));
+});
+
+
+/**
 *  @OA\Post(path="/admin/add/event", description = "Add event to system.", tags={"x-admin", "event"},
 *   @OA\RequestBody(description="Basic event info", required=true,
 *     @OA\MediaType(mediaType="application/json",
