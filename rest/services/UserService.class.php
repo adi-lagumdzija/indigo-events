@@ -24,6 +24,10 @@ class UserService extends BaseService{
     }
   }
 
+  public function get_user_by_token($token){
+    return $this->dao->get_user_by_token($token);
+  }
+
   public function register($user){
   try{
     $this->dao->beginTransaction();
