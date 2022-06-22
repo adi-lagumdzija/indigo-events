@@ -11,7 +11,7 @@ class EventTypeService extends BaseService{
   }
 
   public function get_eventType_by_name($type_name){
-    return $this->dao->getEventTyp_by_name($type_name);
+    return $this->dao->getEventType_by_name($type_name);
   }
 
   public function add_event_type($event_type){

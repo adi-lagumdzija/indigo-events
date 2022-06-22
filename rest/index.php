@@ -53,6 +53,7 @@ Flight::route('GET /docs.json', function(){
 require_once __DIR__.'/routes/UserRoutes.php';
 require_once __DIR__.'/routes/CompanyRoutes.php';
 require_once __DIR__.'/routes/EventTypeRoutes.php';
+require_once __DIR__.'/routes/EventRoutes.php';
 
 Flight::start();
 ?>
