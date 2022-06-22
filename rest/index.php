@@ -6,13 +6,23 @@ error_reporting(E_ALL);
 require_once dirname(__FILE__).'/../vendor/autoload.php';
 require_once __DIR__.'/services/UserService.class.php';
 require_once __DIR__.'/services/CompanyService.class.php';
+require_once __DIR__.'/services/EventService.class.php';
+require_once __DIR__.'/services/EventTypeService.class.php';
+
 require_once __DIR__.'/dao/UserDao.class.php';
 require_once __DIR__.'/dao/CompanyDao.class.php';
+require_once __DIR__.'/dao/EventDao.class.php';
+require_once __DIR__.'/dao/EventTypeDao.class.php';
 
 Flight::register('userDao', 'UserDao');
 Flight::register('companyDao', 'CompanyDao');
+Flight::register('eventDao', 'EventDao');
+Flight::register('eventTypeDao', 'EventTypeDao');
+
 Flight::register('userService', 'UserService');
 Flight::register('companyService', 'CompanyService');
+Flight::register('eventService', 'EventService');
+Flight::register('eventTypeService', 'EventTypeService');
 
 
 Flight::map('error', function(Exception $ex){
@@ -42,6 +52,7 @@ Flight::route('GET /docs.json', function(){
 
 require_once __DIR__.'/routes/UserRoutes.php';
 require_once __DIR__.'/routes/CompanyRoutes.php';
+require_once __DIR__.'/routes/EventTypeRoutes.php';
 
 Flight::start();
 ?>
