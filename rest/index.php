@@ -5,10 +5,14 @@ error_reporting(E_ALL);
 
 require_once dirname(__FILE__).'/../vendor/autoload.php';
 require_once __DIR__.'/services/UserService.class.php';
+require_once __DIR__.'/services/CompanyService.class.php';
 require_once __DIR__.'/dao/UserDao.class.php';
+require_once __DIR__.'/dao/CompanyDao.class.php';
 
 Flight::register('userDao', 'UserDao');
+Flight::register('companyDao', 'CompanyDao');
 Flight::register('userService', 'UserService');
+Flight::register('companyService', 'CompanyService');
 
 
 Flight::map('error', function(Exception $ex){
@@ -31,12 +35,13 @@ Flight::route('GET /docs.json', function(){
   echo $openapi->toJson();
 });
 
-FLight::route('/try', function(){
-   echo 'This is my route.';
- });
+// FLight::route('/try', function(){
+//    echo 'This is my route.';
+//  });
 
 
 require_once __DIR__.'/routes/UserRoutes.php';
+require_once __DIR__.'/routes/CompanyRoutes.php';
 
 Flight::start();
 ?>
