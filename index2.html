@@ -50,17 +50,41 @@
       }
       $("#event-list").html(html);
       console.log(data);
+
+      // columns: [                                  //columns descriptor: used to read objects from the data source based on column names
+      // {"data":"id",
+      //   "render": function(data, type, row, meta){
+      //     return '<div style="min-width: 60px;"><span class="badge">'+data+'</span><a class="pull-right" style="font-size: 15px; cursor: pointer;" onClick="Items.pre_edit('+data+')"><i clas="fa fa-edit"></i></a> </div>';
+      //   }
+      // },
+      // {"data":"name" },
+      // {"data":"status" },
+      // {"data":"city" },
+      // {"data":"address" },
+      // {"data":"date_held"},
+    /*  {"data":"image_src",
+      "render": function ( data, type, row, meta ) {
+        return '<img src="'+data+'" alt="Item image" height="500" width="500"/>';
+        }
+      },*/
+      //   {"data":"num_of_tickets" },
+      //   {"data":"description" },
+      //   {"data":"company_name" }
+      // ]
     });
 
     function showModal(id){
       $.get('rest/event/'+id, function(data){
         console.log(data);
-        $("#exampleModal .modal-body").html(id);
+      //  $("#exampleModal .modal-body").html(id);
+      $("#name").val(data.name);
         $("#exampleModal").modal("show");
       });
     }
 
-    function makeReservation()
+    function makeReservation(){
+      alert("Reservation created.");
+    }
   </script>
 
 
@@ -75,7 +99,8 @@
           </button>
         </div>
         <div class="modal-body">
-          ...
+          <input id="name" type="text"/>
+          <input id="id" type="text"/>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
