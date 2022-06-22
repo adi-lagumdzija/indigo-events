@@ -6,6 +6,9 @@ class Config {
   const DB_USERNAME = "events";
   const DB_PASSWORD = "events123";
   const DB_SCHEME = "events_db";
+
+  const JWT_SECRET = "y4KvQcZVqn3F7uxQvcFk";
+  const JWT_TOKEN_TIME = 604800;
 }
 
 ?>
