@@ -32,7 +32,7 @@ Flight::route('GET /admin/users/@id', function($id){
 });
 
 /**
- * @OA\Put(path="/admin/user/{id}", tags={"x-admin", "users"}, security={{"ApiKeyAuth":{}}},
+ * @OA\Put(path="/admin/user/{id}", tags={"x-admin", "user"}, security={{"ApiKeyAuth":{}}},
  *  @OA\Parameter(@OA\Schema(type="integer"), in="path", name="id"),
  *   @OA\RequestBody(description="Basic user info that is going to be updated", required=true,
  *     @OA\MediaType(mediaType="application/json",
