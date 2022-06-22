@@ -1,5 +1,24 @@
 <?php
 
+/**
+ * @OA\Get(path="/admin/users", tags={"x-admin", "user"}, security={{"ApiKeyAuth":{}}},
+ *     @OA\Parameter(@OA\Schema(type="integer"), in="query", name="offset", description="Offset for pagination"),
+ *     @OA\Parameter(@OA\Schema(type="integer"), in="query", name="limit", description="Limit for pagination"),
+ *     @OA\Parameter(@OA\Schema(type="string"), in="query", name="search", description="Search string for users. Case insensitive search."),
+ *     @OA\Parameter(@OA\Schema(type="string"), in="query", name="order", description="Sorting for return elements. -column_name ascending order by column_name or +column_name descending order by column_name"),
+ *     @OA\Response(response="200", description="List users from database")
+ * )
+ */
+Flight::route('GET /admin/users', function(){
+  $offset = Flight::query('offset', 0);
+  $limit = Flight::query('limit', 25);
+  $search = Flight::query('search');
+  $order = Flight::query('order', "-id");
+
+  Flight::json(Flight::userService()->get_user($search, $offset, $limit, $order));
+});
+
+
  /**
  *  @OA\Post(path="/register", description = "Register on the system.", tags={"user"},
  *   @OA\RequestBody(description="Basic user info", required=true,
