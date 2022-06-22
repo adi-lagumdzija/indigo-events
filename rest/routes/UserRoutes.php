@@ -19,6 +19,37 @@ Flight::route('GET /admin/users', function(){
 });
 
 
+//check out
+/**
+ * @OA\Get(path="/admin/users/{id}", tags={"x-admin", "user"}, security={{"ApiKeyAuth":{}}},
+ *     @OA\Parameter(@OA\Schema(type="integer"), in="path", name="id", description="Id of user"),
+ *     @OA\Response(response="200", description="Fetch individual user")
+ * )
+ */
+Flight::route('GET /admin/users/@id', function($id){
+  if(Flight::get('user')['id'] != $id) throw new Exception("This user is not for you.", 401);
+  Flight::json(Flight::userService()->get_by_id($id));
+});
+
+/**
+ * @OA\Put(path="/admin/user/{id}", tags={"x-admin", "users"}, security={{"ApiKeyAuth":{}}},
+ *  @OA\Parameter(@OA\Schema(type="integer"), in="path", name="id"),
+ *   @OA\RequestBody(description="Basic user info that is going to be updated", required=true,
+ *     @OA\MediaType(mediaType="application/json",
+ *    		@OA\Schema(
+ *    		  @OA\Property(property="username", type="string", example="My Test Account2", description="Username of the user"),
+ *    				@OA\Property(property="status", type="string", example="ACTIVE", description="Status of user")
+ *         )
+ *     )
+ *      ),
+ *     @OA\Response(response="200", description="Update user based on parameter")
+ * )
+ */
+Flight::route('PUT /admin/user/@id', function($id){
+  $data = Flight::request()->data->getData();
+  Flight::json(Flight::userService()->update($id, $data));
+});
+
  /**
  *  @OA\Post(path="/register", description = "Register on the system.", tags={"user"},
  *   @OA\RequestBody(description="Basic user info", required=true,
