@@ -28,6 +28,16 @@ Flight::route('GET /event/@id', function($id){
 });
 
 /**
+ * @OA\Get(path="/event/{city}", tags={"event"}, security={{"ApiKeyAuth":{}}},
+ *     @OA\Parameter(@OA\Schema(type="string"), in="path", name="city", description="City where event is held"),
+ *     @OA\Response(response="200", description="Fetch events by city")
+ * )
+ */
+Flight::route('GET /event/@city', function($city){
+  Flight::json(Flight::eventService()->get_event_by_city($city));
+});
+
+/**
 *  @OA\Post(path="/admin/add/event", description = "Add event to system.", tags={"x-admin", "event"},
 *   @OA\RequestBody(description="Basic event info", required=true,
 *     @OA\MediaType(mediaType="application/json",

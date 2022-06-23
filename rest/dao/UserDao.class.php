@@ -14,7 +14,7 @@ class  UserDao extends BaseDao{
   public function getUser_by_email($email){
     return $this->query_unique("SELECT * FROM user WHERE email = :email", ["email"=>$email]);
   }
-  
+
   public function get_user($search, $offset, $limit, $order= '-id'){
 
     list($order_column, $order_direction) = self::parse_order($order);

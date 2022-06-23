@@ -108,7 +108,8 @@ Flight::route('PUT /admin/user/@id', function($id){
    }else{
      echo "";
    }
-   Flight::json(Flight::userService()->register($data));
+   Flight::userService()->register($data);
+   Flight::json(["message" => "Conformation email has been sent. Please confirm your account."]);
  });
 
  /**
@@ -130,8 +131,21 @@ Flight::route('PUT /admin/user/@id', function($id){
  * )
   */
  Flight::route('POST /login', function(){
-   $data = Flight::request()->data->getData();
-   Flight::json(Flight::userService()->login($data));
+   Flight::json(Flight::jwt(Flight::userService()->login(Flight::request()->data->getData())));
+   // $data = Flight::request()->data->getData();
+   // Flight::json(Flight::userService()->login($data));
+ });
+
+ /**
+  * @OA\Get(path="/confirm/{token}", tags={"user"},
+  *     @OA\Parameter(@OA\Schema(type="string"), in="path", name="token", description="Temporary token for activating account"),
+  *     @OA\Response(response="200", description="Message upon successfull activation.")
+  * )
+  */
+ Flight::route('GET /confirm/@token', function($token){
+   Flight::json(Flight::jwt(Flight::userService()->confirm($token)));
+//   header("Location: ".'//'.$_SERVER["SERVER_NAME"].str_replace("/rest/index.php","/login.html",$_SERVER["SCRIPT_NAME"]));
+   //exit();
  });
 
 

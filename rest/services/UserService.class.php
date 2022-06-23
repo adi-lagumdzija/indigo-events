@@ -2,18 +2,16 @@
 require_once dirname(__FILE__).'/BaseService.class.php';
 require_once dirname(__FILE__).'/../dao/UserDao.class.php';
 require_once dirname(__FILE__).'/../../vendor/autoload.php';
-//require_once dirname(__FILE__).'/../clients/SMTPclients.class.php';
+require_once dirname(__FILE__).'/../clients/SMTPclients.class.php';
 
-// use Firebase\JWT\JWT;
-// use OTPHP\TOTP;
+use \Firebase\JWT\JWT;
 
 class UserService extends BaseService{
-   private $userDao;
   // private $smtpClient;
 
   public function __construct(){
     $this->dao = new UserDao();
-  //  $this->smtpClient = new SMTPClient();
+    $this->smtpClient = new SMTPClient();
   }
 
   public function get_user($search, $offset, $limit, $order){
@@ -44,7 +42,6 @@ class UserService extends BaseService{
        die();
     }
     else{
-    // Username is good.
       $user = parent::add([
         "username" => $user["username"],
         "name" => $user["name"],
@@ -62,14 +59,12 @@ class UserService extends BaseService{
         $this->dao->rollBack();
         if(str_contains($e->getMessage(), 'user.username_UNIQUE')){
           throw new Exception("Please choose another username.", 400, $e);
-        }else if(str_contains($e->getMessage(), 'user.email_UNIQUE')){
-          throw new Exception("Please provide a valid email address.", 400, $e);
         }else{
           throw $e;
         }
     }
-//    $this->smtpClient->send_register_user_token($user);
-      return $user;
+    $this->smtpClient->send_register_user_token($user);
+    return $user;
   }
 
   public function login($user){
@@ -86,27 +81,8 @@ class UserService extends BaseService{
   } else {
       throw new Exception("Invalid password", 400);
   }
-
-  // $otp = TOTP::create(Config::OTP_SECRET);
-  // $otp->setLabel('dzenana@ibuapp');
-  // $grCodeUri = $otp->getQrCodeUri(
-  //     'https://api.qrserver.com/v1/create-qr-code/?data=[DATA]&size=300x300&ecc=M',
-  //     '[DATA]'
-  // );
-  // echo "<img src='{$grCodeUri}'>";
-  // return ["token" => $otp->now()];
   return $db_user;
-  //["token" => $jwt];
   }
-
-
-  public function confirm($token){
-    $user = $this->dao->get_user_by_token($token);
-    if(!isset($user['id'])) throw Exception("Invalid token");
-
-    $this->dao->update($user['id'], ["status" => "ACTIVE", "token" => NULL]);
-  }
-
 
   public function forgot($user){
 
@@ -131,18 +107,12 @@ class UserService extends BaseService{
    return $db_user;
  }
 
-// public function confirm($token){
-//   $otp = TOTP::create(Config::OTP_SECRET);
-//   $user = $this->dao->get_user_by_token($token);
-//
-//   if(!isset($user['id'])) throw Exception("Invalid token");
-//
-//   if($otp->now() == $token){
-//     $this->dao->login($user['token']);
-//     this->dao->update($user['id'], ["status" => "ACTIVE", "token" => NULL]);
-//   }else{
-//     die();
-//   }
-// }
+  public function confirm($token){
+      $user = $this->dao->get_user_by_token($token);
+        if (!isset($user['id'])) throw new Exception("Invalid token", 400);
+        $this->dao->update($user['id'], ["status" => "ACTIVE", "token" => NULL]);
+
+      return $user;
+    }
 }
 ?>

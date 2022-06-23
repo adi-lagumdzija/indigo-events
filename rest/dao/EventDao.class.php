@@ -16,9 +16,9 @@ class EventDao extends BaseDao{
                         LIMIT ${limit} OFFSET ${offset}",
                         ["name"=>strtolower($search)]);
   }
-
-  public function getEvent_by_city($city){
-    return $this->query_unique("SELECT * FROM event WHERE city = :city", ["city"=>$city]);
+//doesnt work
+  public function get_event_by_city($city){
+    return $this->query("SELECT * FROM event WHERE city LIKE '%':city'%'", ['city' => $city]);
   }
 
   public function get_event_by_id($id){
