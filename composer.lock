@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "eac13a85a94de3ea4557d826f2288bff",
+    "content-hash": "25d558d2c345d6d7975f477ca09ce72c",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -283,6 +283,51 @@
                 "source": "https://github.com/firebase/php-jwt/tree/v6.2.0"
             },
             "time": "2022-05-13T20:54:50+00:00"
+        },
+        {
+            "name": "heroku/heroku-buildpack-php",
+            "version": "v220",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/heroku/heroku-buildpack-php.git",
+                "reference": "af0935921c10dc7d2d2f41b06c0a66c89102d8dd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/heroku/heroku-buildpack-php/zipball/af0935921c10dc7d2d2f41b06c0a66c89102d8dd",
+                "reference": "af0935921c10dc7d2d2f41b06c0a66c89102d8dd",
+                "shasum": ""
+            },
+            "bin": [
+                "bin/heroku-php-apache2",
+                "bin/heroku-php-nginx"
+            ],
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "David Zuelke",
+                    "email": "dz@heroku.com"
+                }
+            ],
+            "description": "Toolkit for starting a PHP application locally, with or without foreman, using the same config for PHP and Apache2/Nginx as on Heroku",
+            "homepage": "https://github.com/heroku/heroku-buildpack-php",
+            "keywords": [
+                "apache",
+                "apache2",
+                "foreman",
+                "heroku",
+                "nginx",
+                "php"
+            ],
+            "support": {
+                "issues": "https://github.com/heroku/heroku-buildpack-php/issues",
+                "source": "https://github.com/heroku/heroku-buildpack-php/tree/v220"
+            },
+            "time": "2022-06-15T15:34:32+00:00"
         },
         {
             "name": "mikecao/flight",
