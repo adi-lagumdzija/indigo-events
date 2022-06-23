@@ -5,7 +5,7 @@ class Config {
   const DB_HOST = "127.0.0.1";
   const DB_USERNAME = "root";
   const DB_PASSWORD = "bradi123"; 
-  const DB_SCHEME = "indigoevents-project"; 
+  const DB_SCHEME = "indigo-events"; 
 
   //ovo uncommentaj a ovo moje commentaj
   // const DB_HOST = "localhost";
@@ -16,6 +16,7 @@ class Config {
   const JWT_SECRET = "y4KvQcZVqn3F7uxQvcFk";
   const JWT_TOKEN_TIME = 604800;
 }
+
 
 ?>
 
