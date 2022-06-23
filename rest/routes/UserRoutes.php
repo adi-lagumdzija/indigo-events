@@ -130,9 +130,8 @@ Flight::route('PUT /admin/user/@id', function($id){
  * )
   */
  Flight::route('POST /login', function(){
-//    Flight::json(Flight::jwt(Flight::userService()->login(Flight::request()->data->getData())));
-  $data = Flight::request()->data->getData();
-  Flight::json(Flight::userService()->login($data));
+   $data = Flight::request()->data->getData();
+   Flight::json(Flight::userService()->login($data));
  });
 
 

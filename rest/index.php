@@ -29,10 +29,10 @@ Flight::register('eventTypeService', 'EventTypeService');
 Flight::register('reservationService', 'ReservationService');
 
 
-// Flight::map('error', function(Exception $ex){
-//     // Handle error
-//     Flight::json(['message' => $ex->getMessage()], 500);
-// });
+Flight::map('error', function(Exception $ex){
+    // Handle error
+    Flight::json(['message' => $ex->getMessage()], 500);
+});
 
 /* utility function for reading query parameters from URL */
 Flight::map('query', function($name, $default_value = NULL){
@@ -50,10 +50,10 @@ Flight::route('GET /docs.json', function(){
 });
 
 /* utility function for generating JWT token */
-// Flight::map('jwt', function($user){
-//   $jwt = \Firebase\JWT\JWT::encode(["exp" => (time() + Config::JWT_TOKEN_TIME), "id" => $user["id"], "r" => $user["role"], "username" => $user["username"], "r" => $user["role"]], Config::JWT_SECRET);
-//   return ["token" => $jwt];
-// });
+Flight::map('jwt', function($user){
+  $jwt = \Firebase\JWT\JWT::encode(["exp" => (time() + Config::JWT_TOKEN_TIME), "id" => $user["id"], "aid" => $user["account_id"], "r" => $user["role"]], Config::JWT_SECRET);
+  return ["token" => $jwt];
+});
 
 // FLight::route('/try', function(){
 //    echo 'This is my route.';

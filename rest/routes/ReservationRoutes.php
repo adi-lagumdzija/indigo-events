@@ -9,7 +9,6 @@ Flight::route('GET /reservation/@id', function($id){
   Flight::json(Flight::reservationService()->get_reservation_by_id($id));
 });
 
-
 /**
  * @OA\Get(path="/reservation/{user_id}", tags={"reservation"}, security={{"ApiKeyAuth":{}}},
  *     @OA\Parameter(@OA\Schema(type="integer"), in="path", name="user_id", description="User id of reservation"),
