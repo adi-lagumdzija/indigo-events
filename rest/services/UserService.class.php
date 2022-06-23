@@ -4,7 +4,7 @@ require_once dirname(__FILE__).'/../dao/UserDao.class.php';
 require_once dirname(__FILE__).'/../../vendor/autoload.php';
 require_once dirname(__FILE__).'/../clients/SMTPclients.class.php';
 
-use \Firebase\JWT\JWT;
+use Firebase\JWT\JWT;
 
 class UserService extends BaseService{
   // private $smtpClient;

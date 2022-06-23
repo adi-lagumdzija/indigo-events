@@ -10,23 +10,20 @@ Flight::route('GET /reservation/@id', function($id){
 });
 
 /**
- * @OA\Get(path="/reservation/{user_id}", tags={"reservation"}, security={{"ApiKeyAuth":{}}},
- *     @OA\Parameter(@OA\Schema(type="integer"), in="path", name="user_id", description="User id of reservation"),
- *     @OA\Response(response="200", description="Fetch reservation by id")
+ * @OA\Get(path="/user/reservations", tags={"reservation"}, security={{"ApiKeyAuth": {}}},
+ *         @OA\Response( response=200, description="List of reservations.")
  * )
  */
-Flight::route('GET /reservation/@user_id', function($user_id){
-  Flight::json(Flight::reservationService()->get_reservation_by_user_id($user_id));
+Flight::route('GET /user/reservations', function(){
+  $user = Flight::get('user');
+  Flight::json(Flight::reservationService()->get_user_reservations($user));
 });
 
 /**
-*  @OA\Post(path="/add/reservation", description = "Add reservation to system.", tags={"reservation"},
+*  @OA\Post(path="/user/add/reservation/{event_id}", description = "Add reservation to system.", tags={"reservation"},
 *   @OA\RequestBody(description="Basic reservation info", required=true,
 *     @OA\MediaType(mediaType="application/json",
 *    		@OA\Schema(
-*         @OA\Property(property="status", type="string", example="ACTIVE", description="Status of  reservation"),
-*         @OA\Property(property="user_id", type="integer", example="5", description="User id of user that made the reservation"),
-*         @OA\Property(property="event_id", type="integer", example="2", description="Company id of user that made the reservation")
 *     )
 *      )),
  *    @OA\Response(
@@ -34,8 +31,8 @@ Flight::route('GET /reservation/@user_id', function($user_id){
  *       description="Added reservation to system.")
  * )
  */
-Flight::route('POST /add/reservation', function(){
+Flight::route('POST /user/add/reservation/@event_id', function($event_id){
   $data = Flight::request()->data->getData();
-  Flight::json(Flight::reservationService()->add_reservation($data));
+  Flight::json(Flight::reservationService()->add_reservation($data, $event_id, Flight::get('user')['id']));
 });
 ?>

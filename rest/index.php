@@ -9,6 +9,8 @@ require_once __DIR__.'/services/CompanyService.class.php';
 require_once __DIR__.'/services/EventService.class.php';
 require_once __DIR__.'/services/EventTypeService.class.php';
 require_once __DIR__.'/services/ReservationService.class.php';
+use Firebase\JWT\JWT;
+use Firebase\JWT\Key;
 
 require_once __DIR__.'/dao/UserDao.class.php';
 require_once __DIR__.'/dao/CompanyDao.class.php';
@@ -61,9 +63,28 @@ Flight::map('jwt', function ($user) {
     return ["token" => $jwt];
 });
 
-// FLight::route('/try', function(){
-//    echo 'This is my route.';
-//  });
+// middleware method for login
+Flight::route('/*', function(){
+  //return TRUE;
+  //perform JWT decode
+  $path = Flight::request()->url;
+  if ($path == '/login' || $path == '/docs.json') return TRUE; // exclude login route from middleware
+
+  $headers = getallheaders();
+  if (@!$headers['Authorization']){
+    Flight::json(["message" => "Authorization is missing"], 403);
+    return FALSE;
+  }else{
+    try {
+      $decoded = (array)JWT::decode($headers['Authorization'], new Key(Config::JWT_SECRET(), 'HS256'));
+      Flight::set('user', $decoded);
+      return TRUE;
+    } catch (\Exception $e) {
+      Flight::json(["message" => "Authorization token is not valid"], 403);
+      return FALSE;
+    }
+  }
+});
 
 
 require_once __DIR__.'/routes/UserRoutes.php';

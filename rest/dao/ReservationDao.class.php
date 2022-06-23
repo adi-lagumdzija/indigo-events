@@ -15,8 +15,13 @@ class  ReservationDao extends BaseDao{
     return $this->query_unique("SELECT * FROM reservationdetails WHERE user_id = :user_id", ["user_id"=>$user_id]);
   }
 
-  // public function update_reservation_by_userid($status,$user){
-  //   $this->update("user", $id, $user, "status");
-  // }
+  public function get_user_reservations($user_id){
+    $query = "SELECT rd.status, rd.date_reserved, u.name AS user_name,
+    u.surname, e.name AS event_name, e.city, e.address, e.date_held FROM
+    reservationdetails rd JOIN user u ON rd.user_id = u.id
+    JOIN event e ON rd.event_id = e.id WHERE user_id = :user_id";
+    return $this->query($query, ['user_id' => $user_id]);
+  }
+
  }
 ?>
