@@ -72,8 +72,32 @@
 
 <div class = "conntainer">
 <div class="cardd-content" style="display: none;">
-        <div class="cardd">
-            <div class="cardd-image"> <img src="https://www.novilist.hr/wp-content/uploads/2021/06/Jala-Brat-i-Buba-Corelli.jpg" alt="" srcset=""> </div>
+    <script>
+        $.get("rest/events", function(data){
+
+          $(".cardd-content").html("");
+
+          var html = "";
+          for(let i = 0; i < data.length; i++){
+            html += `
+            <div class="cardd">
+        <div class="cardd-image"> <img src="https://www.novilist.hr/wp-content/uploads/2021/06/Jala-Brat-i-Buba-Corelli.jpg" alt="" srcset=""> </div>
+        <div class="cardd-info">
+            <h3>`+ data[i].name +`</h3>
+            <p>`+ data[i].description +`</p>
+        </div>
+    </div>
+            `;
+          }
+          $(".cardd-content").html(html);
+          console.log(data);
+        });
+
+
+      </script>
+        <!-- <div class="cardd"> -->
+
+            <!-- <div class="cardd-image"> <img src="https://www.novilist.hr/wp-content/uploads/2021/06/Jala-Brat-i-Buba-Corelli.jpg" alt="" srcset=""> </div>
             <div class="cardd-info">
                 <h3>Card 01</h3>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium quasi laudantium hic a omnis est. Dolorum debitis exercitationem, modi odio voluptate, aliquid eveniet autem assumenda ipsum temporibus unde, deserunt ea?</p>
@@ -155,7 +179,7 @@
                 <h3>Card 03</h3>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium quasi laudantium hic a omnis est. Dolorum debitis exercitationem, modi odio voluptate, aliquid eveniet autem assumenda ipsum temporibus unde, deserunt ea?</p>
             </div>
-        </div>
+        </div> -->
      </div>
 
      <div class="pagination">
