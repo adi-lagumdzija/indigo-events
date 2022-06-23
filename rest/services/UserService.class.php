@@ -4,7 +4,8 @@ require_once dirname(__FILE__).'/../dao/UserDao.class.php';
 require_once dirname(__FILE__).'/../../vendor/autoload.php';
 //require_once dirname(__FILE__).'/../clients/SMTPclients.class.php';
 
-// use Firebase\JWT\JWT;
+use Firebase\JWT\JWT;
+//use Firebase\JWT\Key;
 // use OTPHP\TOTP;
 
 class UserService extends BaseService{
@@ -75,7 +76,7 @@ class UserService extends BaseService{
   public function login($user){
   $db_user = $this->dao->getUser_by_username($user['username']);
 
-  if (!isset($db_user['id'])) throw new Exception("User doesn't exists", 400);
+  if (!isset($db_user['id'])) throw new Exception("User doesn't exist", 400);
 
   if (strlen($db_user['username']) < 3 ) throw new Exception("User doesn't exists", 400);
 
@@ -84,7 +85,8 @@ class UserService extends BaseService{
   if (password_verify($user["password"], $db_user['password'])) {
       echo '';
   } else {
-      throw new Exception("Invalid password", 400);
+      Flight::json(["message" => "Wrong password"], 404);
+      //throw new Exception("Invalid password", 400);
   }
 
   // $otp = TOTP::create(Config::OTP_SECRET);
