@@ -26,6 +26,9 @@
               <li class="nav-item">
                 <a class="nav-link" href="#">My Events</a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Login</a>
+              </li>
             </ul>
           </div>
         </div>
@@ -85,6 +88,13 @@
         <div class="cardd-info">
             <h3>`+ data[i].name +`</h3>
             <p>`+ data[i].description +`</p>
+            <p>📍 ` + data[i].city +`</p>
+            <p>🗓️ ` + data[i].date_held +`</p>
+            <p>
+          <button type="button" class="btn btn-primary" onclick="showModal(`+data[i].id+`)">
+            View More
+          </button></p>
+
         </div>
     </div>
             `;
@@ -92,9 +102,42 @@
           $(".cardd-content").html(html);
           console.log(data);
         });
+        function showModal(id){
+        $.get('rest/event/'+id, function(data){
+            console.log(data);
+      //  $("#exampleModal .modal-body").html(id);
+        $("#name").val(data.name);
+        $("#exampleModal").modal("show");
+      });
+    }
 
+    function makeReservation(){
+      alert("Reservation created.");
+    }
 
+        
       </script>
+
+      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <input id="name" type="text"/>
+              <input id="id" type="text"/>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" onclick="makeReservation()">Make reservation</button>
+            </div>
+          </div>
+        </div>
+      </div>
         <!-- <div class="cardd"> -->
 
             <!-- <div class="cardd-image"> <img src="https://www.novilist.hr/wp-content/uploads/2021/06/Jala-Brat-i-Buba-Corelli.jpg" alt="" srcset=""> </div>
