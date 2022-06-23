@@ -9,7 +9,6 @@
     <title>Indigo Events</title>
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    
 
 </head>
 <body>
@@ -26,9 +25,6 @@
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">My Events</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="#">Login</a>
               </li>
             </ul>
           </div>
@@ -72,42 +68,18 @@
                         <!--end of col-->
                     </div>
 </div>
-<script src="js\jquery-3.6.0.min.js"></script>
-<script src="js\bootstrap.bundle.min.js"></script>
+
 
 <div class = "conntainer">
 <div class="cardd-content" style="display: none;">
-        <!-- <div class="cardd">
+        <div class="cardd">
             <div class="cardd-image"> <img src="https://www.novilist.hr/wp-content/uploads/2021/06/Jala-Brat-i-Buba-Corelli.jpg" alt="" srcset=""> </div>
             <div class="cardd-info">
                 <h3>Card 01</h3>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium quasi laudantium hic a omnis est. Dolorum debitis exercitationem, modi odio voluptate, aliquid eveniet autem assumenda ipsum temporibus unde, deserunt ea?</p>
             </div>
-        </div> -->
-        <script>
-            $.get("rest/events", function(data){
-        
-              $(".cardd-content").html("");
-        
-              var html = "";
-              for(let i = 0; i < data.length; i++){
-                html += `
-                <div class="cardd">
-            <div class="cardd-image"> <img src="https://www.novilist.hr/wp-content/uploads/2021/06/Jala-Brat-i-Buba-Corelli.jpg" alt="" srcset=""> </div>
-            <div class="cardd-info">
-                <h3>`+ data[i].name +`</h3>
-                <p>`+ data[i].description +`</p>
-            </div>
         </div>
-                `;
-              }
-              $(".cardd-content").html(html);
-              console.log(data);
-            });
-        
-            
-          </script>
-        <!-- <div class="cardd">
+        <div class="cardd">
             <div class="cardd-image"> <img src="https://static.jutarnji.hr/images/slike/2021/03/09/k_10393197_640.jpg" alt="" srcset=""> </div>
             <div class="cardd-info">
                 <h3>Card 02</h3>
@@ -183,7 +155,7 @@
                 <h3>Card 03</h3>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium quasi laudantium hic a omnis est. Dolorum debitis exercitationem, modi odio voluptate, aliquid eveniet autem assumenda ipsum temporibus unde, deserunt ea?</p>
             </div>
-        </div> -->
+        </div>
      </div>
 
      <div class="pagination">
@@ -195,6 +167,7 @@
          <li class="page-item dots"><a class="page-link" href="#">...</a></li>
          <li class="page-item current-page"><a class="page-link" href="#">10</a></li>
          <li class="page-item next-page"><a class="page-link" href="#">Next</a></li> -->
+
      </div>
 </div>
 <script type="text/javascript">
@@ -257,6 +230,150 @@
                 })
     });
 </script>
+
+    <!-- <div class="wrapper mt-5 m-5">
+    <div class="search">
+        <i class="fa fa-search"></i>
+        <input type="text" class="form-control" placeholder="Search Event">
+        <button class="btn btn-primary mt-5 m-5">Search</button>
+      </div>
+    </div> -->
+<!-- <div class="container">
+    <br>
+    <br>
+    <br>
+    <div class="row">
+    <div class="col-sm card ml-2 mt-5">
+        <img class="card-img-top w-100 h-100 p-2" src="https://www.novilist.hr/wp-content/uploads/2021/06/Jala-Brat-i-Buba-Corelli.jpg" alt="Card image">
+    <div class="card-body">
+        <h4 class="card-title text-center"><strong>Jala Brat & Buba Corelli</strong></h4>
+        <p class="card-text text-primary">📍 Das Ist Walter Sarajevo</p>
+        <p class="card-text text-primary">📅 25.05.2022.</p>
+        <a href="#" class="btn btn-primary">More Info</a>
+    </div>
+    </div>
+
+    <div class="col-sm card ml-2 mt-5">
+        <img class="card-img-top w-100 h-100 p-2" src="https://yt3.ggpht.com/UjBmZHYrZo_8BNSLJ5m7wGIkdOby20gSHSk6HQVMUpuIHduUDzu7NM4mr8w7htCD0ekfb2WMUw=s900-c-k-c0x00ffffff-no-rj" alt="Card image">
+    <div class="card-body">
+        <h4 class="card-title text-center"><strong>Salvatore Ganacci</strong></h4>
+        <p class="card-text text-primary">📍 Club Trezor Sarajevo</p>
+        <p class="card-text text-primary">📅 27.05.2022.</p>
+        <a href="#" class="btn btn-primary">More Info</a>
+    </div>
+    </div>
+
+    <div class="col-sm card ml-2 mt-5">
+        <img class="card-img-top w-100 h-100 p-2" src="https://yt3.ggpht.com/sAIdDKWo-u6Rb0Y9eg3CewiGPYIIFZNbEjmgBkE4Aq4p5rBmFNEOOytKKUY9yAV73utB_fgr3jM=s900-c-k-c0x00ffffff-no-rj" alt="Card image">
+    <div class="card-body">
+        <h4 class="card-title text-center"><strong>Milica Pavlović</strong></h4>
+        <p class="card-text text-primary">📍 Daleka Obala Mostar</p>
+        <p class="card-text text-primary">📅 27.05.2022.</p>
+        <a href="#" class="btn btn-primary">More Info</a>
+    </div>
+    </div>
+
+</div>
+<div class="row">
+    <div class="col-sm card ml-2 mt-5">
+        <img class="card-img-top w-100 h-100 p-2" src="https://cdns-images.dzcdn.net/images/artist/ba5e2b6a1dee1c51f6600ad9c248af3d/500x500.jpg" alt="Card image">
+    <div class="card-body">
+        <h4 class="card-title text-center"><strong>Hari Mata Hari</strong></h4>
+        <p class="card-text text-primary">📍 Zetra</p>
+        <p class="card-text text-primary">📅 29.05.2022.</p>
+        <a href="#" class="btn btn-primary">More Info</a>
+    </div>
+    </div>
+
+    <div class="col-sm card ml-2 mt-5">
+        <img class="card-img-top w-100 h-100 p-2" src="https://static.jutarnji.hr/images/slike/2021/03/09/k_10393197_640.jpg" alt="Card image">
+    <div class="card-body">
+        <h4 class="card-title text-center"><strong>Željko Joksimović</strong></h4>
+        <p class="card-text text-primary">📍 Golden Cube Mostar</p>
+        <p class="card-text text-primary">📅 30.05.2022.</p>
+        <a href="#" class="btn btn-primary">More Info</a>
+    </div>
+    </div>
+
+    <div class="col-sm card ml-2 mt-5">
+        <img class="card-img-top w-100 h-100 p-2" src="https://www.journal.hr/wp-content/uploads/2021/01/Sara-Jo-pjeva%C4%8Dica.jpg" alt="Card image">
+    <div class="card-body">
+        <h4 class="card-title text-center"><strong>Sara Jo</strong></h4>
+        <p class="card-text text-primary">📍 Das Ist Walter Sarajevo</p>
+        <p class="card-text text-primary">📅 01.06.2022.</p>
+        <a href="#" class="btn btn-primary">More Info</a>
+    </div>
+    </div>
+
+</div>
+
+<div class="row">
+    <div class="col-sm card ml-2 mt-5">
+        <img class="card-img-top w-100 h-100 p-2" src="https://azra.ba/wp-content/uploads/2020/08/hanka-paldum.jpg" alt="Card image">
+    <div class="card-body">
+        <h4 class="card-title text-center"><strong>Hanka Paldum</strong></h4>
+        <p class="card-text text-primary">📍 Restoran Bistra Voda</p>
+        <p class="card-text text-primary">📅 05.06.2022.</p>
+        <a href="#" class="btn btn-primary">More Info</a>
+    </div>
+    </div>
+
+    <div class="col-sm card ml-2 mt-5">
+        <img class="card-img-top w-100 h-100 p-2" src="https://azra.ba/wp-content/uploads/2021/08/jelena-rozga-novo-4-1.jpg" alt="Card image">
+    <div class="card-body">
+        <h4 class="card-title text-center"><strong>Jelena Rozga</strong></h4>
+        <p class="card-text text-primary">📍 Dom Mladih Sarajevo</p>
+        <p class="card-text text-primary">📅 06.06.2022.</p>
+        <a href="#" class="btn btn-primary">More Info</a>
+    </div>
+    </div>
+
+    <div class="col-sm card ml-2 mt-5">
+        <img class="card-img-top w-100 h-100 p-2" src="https://i1.sndcdn.com/artworks-000781171168-8b0jgm-t500x500.jpg" alt="Card image">
+    <div class="card-body">
+        <h4 class="card-title text-center"><strong>Hiljson Mandela</strong></h4>
+        <p class="card-text text-primary">📍 Cinemas Sloga Sarajevo</p>
+        <p class="card-text text-primary">📅 06.06.2022.</p>
+        <a href="#" class="btn btn-primary">More Info</a>
+    </div>
+    </div>
+
+</div>
+
+
+</div> -->
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/simplePagination.js/1.4/jquery.simplePagination.min.js" integrity="sha512-J4OD+6Nca5l8HwpKlxiZZ5iF79e9sgRGSf0GxLsL1W55HHdg48AEiKCXqvQCNtA1NOMOVrw15DXnVuPpBm2mPg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script>
+    var items = $('.container .card');
+    var numItems = items.length;
+    var perPage = 3;
+    items.slice(perPage).hide();
+
+    $('#pagination-container').pagination({
+        items : numItems,
+        itemsOnPage : perPage,
+        prevText: "<",
+        nextText: ">",
+        onPageClick : function (pageNumber){
+            var showFrom = perPage * (pageNumber-1);
+            var showTo = showFrom + perPage;
+            items.hide().slice(showFrom, showTo).show();
+        }
+
+    })
+</script> -->
+
+
+
+
+
+
+
+
+
+
 
 </body>
 </html>
