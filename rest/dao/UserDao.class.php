@@ -32,10 +32,6 @@ class UserDao extends BaseDao
         );
     }
 
-    // public function updateUser_byEmail($email,$user){
-    //   $this->update("user", $id, $user, "email");
-    // }
-
     public function get_user_by_token($token)
     {
         return $this->query_unique("SELECT * FROM user WHERE token = :token", ["token" => $token]);
