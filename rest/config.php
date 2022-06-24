@@ -16,7 +16,6 @@ class Config
     public const SMTP_USER = "#";
     public const SMTP_PASSWORD = "#";
 
-
     public static function JWT_SECRET()
     {
         return Config::get_env("JWT_SECRET", "y4KvQcZVqn3F7uxQvcFk");

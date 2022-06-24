@@ -1,6 +1,7 @@
 <?php
 
 require_once dirname(__FILE__)."/../config.php";
+require_once dirname(__FILE__) . "/../Database.class.php";
 
 /*
 * The main class for interaction with database
@@ -11,19 +12,11 @@ require_once dirname(__FILE__)."/../config.php";
 */
 class BaseDao
 {
-    protected $connection;
     protected $table;
 
     public function __construct($table)
     {
         $this->table = $table;
-        try {
-            $this->connection = new PDO("mysql:host=".Config::DB_HOST.";dbname=".Config::DB_SCHEME, Config::DB_USERNAME, Config::DB_PASSWORD);
-
-            $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        } catch (PDOException $e) {
-            throw $e;
-        }
     }
 
     public function parse_order($order)
@@ -35,25 +28,22 @@ class BaseDao
     }
 
         //Filter SQL injection attacks on column name
-        $order_column = trim($this->connection->quote(substr($order, 1)), "'");
+        $order_column = trim(Database::getInstance()->quote(substr($order, 1)), "'");
 
         return [$order_column, $order_direction];
     }
 
     public function beginTransaction()
-    { //change
-        $this->connection->setAttribute(PDO::ATTR_AUTOCOMMIT, 1);
-        $this->connection->beginTransaction();
+    {
+      Database::getInstance()->beginTransaction();
     }
     public function commit()
     {
-        $this->connection->commit();
-        $this->connection->setAttribute(PDO::ATTR_AUTOCOMMIT, 1);
+       Database::getInstance()->commit();
     }
     public function rollBack()
     {
-        $this->connection->rollBack();
-        $this->connection->setAttribute(PDO::ATTR_AUTOCOMMIT, 1);
+       Database::getInstance()->rollBack();
     }
 
     protected function insert($table, $entity)
@@ -70,9 +60,9 @@ class BaseDao
         $query = substr($query, 0, -2);
         $query .=")";
         echo $query;
-        $stmt= $this->connection->prepare($query);
+        $stmt=  Database::getInstance()->prepare($query);
         $stmt->execute($entity); //sql injection prevention
-        $entity['id'] = $this->connection->lastInsertId();
+        $entity['id'] = Database::getInstance()->lastInsertId();
         return $entity;
     }
 
@@ -86,14 +76,14 @@ class BaseDao
         $query = substr($query, 0, -2);
         $query .= " WHERE ${id_column} = :id";
 
-        $stmt= $this->connection->prepare($query);
+        $stmt= Database::getInstance()->prepare($query);
         $entity['id'] = $id;
         $stmt->execute($entity);
     }
 
     protected function query($query, $params)
     {
-        $stmt = $this->connection->prepare($query);
+        $stmt = Database::getInstance()->prepare($query);
         $stmt->execute($params);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
