@@ -68,8 +68,14 @@ Flight::route('/*', function(){
   //return TRUE;
   //perform JWT decode
   $path = Flight::request()->url;
-  if ($path == '/login' || $path == '/docs.json' || $path == '/events' || $path == '/event/@id' || $path == '/event/@city') return TRUE; // exclude login route from middleware
-
+  if ($path == '/login' || $path == '/register' || $path == '/docs.json' || $path == '/events' || $path == '/event/@id' || $path == '/event/@city') return TRUE; // exclude login route from middleware
+  // if ($path == '/admin/add/event'){
+  //   $decoded = (array)JWT::decode($headers['Authorization'], new Key(Config::JWT_SECRET(), 'HS256'));
+  //   if ($user['r'] != "ADMIN"){
+  //       Flight::set('user', $decoded);
+  //       return TRUE;
+  //   }
+  // }
   $headers = getallheaders();
   if (@!$headers['Authorization']){
     Flight::json(["message" => "Authorization is missing"], 403);
@@ -85,6 +91,8 @@ Flight::route('/*', function(){
     }
   }
 });
+
+
 
 
 require_once __DIR__.'/routes/UserRoutes.php';

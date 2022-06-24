@@ -2,17 +2,21 @@
 class Config {
 
   const DATE_FORMAT = "Y-m-d H:i:s";
-  const JWT_SECRET = "y4KvQcZVqn3F7uxQvcFk";
+//  const JWT_SECRET = "y4KvQcZVqn3F7uxQvcFk";
   const JWT_TOKEN_TIME = 604800;
 
-  const DB_HOST = "localhost";
-  const DB_USERNAME = "events";
-  const DB_PASSWORD = "events123";
-  const DB_SCHEME = "events_db";
+  // const DB_HOST = "localhost";
+  // const DB_USERNAME = "events";
+  // const DB_PASSWORD = "events123";
+  // const DB_SCHEME = "events_db";
+  const DB_HOST = "eu-cdbr-west-02.cleardb.net";
+  const DB_USERNAME = "b80b15d1d7ad17";
+  const DB_PASSWORD = "4b91e993";
+  const DB_SCHEME = "heroku_df1469867643cb1";
 
   const SMTP_HOST = "smtp.sendgrid.net";
   const SMTP_PORT = 587;
-  const SMTP_USER = "#";
+  const SMTP_USER = "#";  //DzeniKey
   const SMTP_PASSWORD = "#";
 
 
