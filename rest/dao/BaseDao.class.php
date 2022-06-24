@@ -109,7 +109,7 @@ class BaseDao
         return $this->query_unique("SELECT * FROM ".$this->table." WHERE id=:id", ["id" => $id]);
     }
 
-    public function get_all($offset = 0, $limit = 25, $order = "-id", $total=false)
+    public function get_all($offset = 0, $limit = 5, $order = "-id", $total=false)
     {
         list($order_column, $order_direction) = self::parse_order($order);
 
