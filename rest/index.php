@@ -64,11 +64,6 @@ Flight::map('jwt', function ($user) {
     return ["token" => $jwt];
 });
 
-
-<<<<<<< HEAD
-=======
-
->>>>>>> c5268dbfeb2b5c70c869f54966bf54e61ecb4792
 // middleware method for login
 //Flight::route('/*', function(){
   //return TRUE;
@@ -82,31 +77,6 @@ Flight::map('jwt', function ($user) {
   //       return TRUE;
   //   }
   // }
-<<<<<<< HEAD
-=======
-  $headers = getallheaders();
-  if (@!$headers['Authorization']){
-    Flight::json(["message" => "Authorization is missing"], 403);
-    return FALSE;
-  }else{
-    try {
-      $decoded = (array)JWT::decode($headers['Authorization'], new Key(Config::JWT_SECRET(), 'HS256'));
-      Flight::set('user', $decoded);
-      return TRUE;
-    } catch (\Exception $e) {
-      Flight::json(["message" => "Authorization token is not valid"], 403);
-      return FALSE;
-    }
-  }
-});
-// // middleware method for login
-// Flight::route('/*', function(){
-//   //return TRUE;
-//   //perform JWT decode
-//   $path = Flight::request()->url;
-//   if ($path == '/login' || $path == '/docs.json' || $path == '/events' || $path == '/event/@id' || $path == '/event/@city') return TRUE; // exclude login route from middleware
-
->>>>>>> c5268dbfeb2b5c70c869f54966bf54e61ecb4792
 //   $headers = getallheaders();
 //   if (@!$headers['Authorization']){
 //     Flight::json(["message" => "Authorization is missing"], 403);
@@ -122,12 +92,6 @@ Flight::map('jwt', function ($user) {
 //     }
 //   }
 // });
-<<<<<<< HEAD
-=======
-
-
->>>>>>> c5268dbfeb2b5c70c869f54966bf54e61ecb4792
-
 
 require_once __DIR__.'/routes/UserRoutes.php';
 require_once __DIR__.'/routes/CompanyRoutes.php';
