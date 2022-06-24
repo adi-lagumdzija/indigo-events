@@ -23,7 +23,7 @@ class Events {
         submitHandler: function(form, event) {
             console.log("success2");
            event.preventDefault();
-           const Event = Utility.jsonizeForm("#add-event-form");
+           const Event = Utility.jsonize_form("#add-event-form");
            console.log(Event)
            $('#overlay').fadeIn();
              Events.addEvent(Event);
