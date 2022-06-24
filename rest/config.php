@@ -29,22 +29,22 @@ class Config {
   const JWT_SECRET = "y4KvQcZVqn3F7uxQvcFk";
   const JWT_TOKEN_TIME = 604800;
 
-  public static function JWT_SECRET(){
-    return Config::get_env("JWT_SECRET", "y4KvQcZVqn3F7uxQvcFk");
-  }
+  // public static function JWT_SECRET(){
+  //   return Config::get_env("JWT_SECRET", "y4KvQcZVqn3F7uxQvcFk");
+  // }
   
-  public static function ENVIRONMENT_SERVER ()
-  {
-      return Config::get_env("ENVIRONMENT_SERVER", "localhost/indigo-events/");
-  }
-  public static function PROTOCOL () {
-      return strtolower(substr($_SERVER["SERVER_PROTOCOL"],0,strpos( $_SERVER["SERVER_PROTOCOL"],'/'))).'://';
-  }
+  // public static function ENVIRONMENT_SERVER ()
+  // {
+  //     return Config::get_env("ENVIRONMENT_SERVER", "localhost/indigo-events/");
+  // }
+  // public static function PROTOCOL () {
+  //     return strtolower(substr($_SERVER["SERVER_PROTOCOL"],0,strpos( $_SERVER["SERVER_PROTOCOL"],'/'))).'://';
+  // }
 
-  public static function get_env($name, $default)
-  {
-      return isset($_ENV[$name]) && trim($_ENV[$name]) != '' ? $_ENV[$name] : $default;
-  }
+  // public static function get_env($name, $default)
+  // {
+  //     return isset($_ENV[$name]) && trim($_ENV[$name]) != '' ? $_ENV[$name] : $default;
+  // }
 }
 
 ?>
