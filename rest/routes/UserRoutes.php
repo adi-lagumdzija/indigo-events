@@ -9,13 +9,13 @@
  *     @OA\Response(response="200", description="List users from database")
  * )
  */
-Flight::route('GET /admin/users', function(){
-  $offset = Flight::query('offset', 0);
-  $limit = Flight::query('limit', 25);
-  $search = Flight::query('search');
-  $order = Flight::query('order', "-id");
+Flight::route('GET /admin/users', function () {
+    $offset = Flight::query('offset', 0);
+    $limit = Flight::query('limit', 25);
+    $search = Flight::query('search');
+    $order = Flight::query('order', "-id");
 
-  Flight::json(Flight::userService()->get_user($search, $offset, $limit, $order));
+    Flight::json(Flight::userService()->get_user($search, $offset, $limit, $order));
 });
 
 
@@ -26,9 +26,11 @@ Flight::route('GET /admin/users', function(){
  *     @OA\Response(response="200", description="Fetch individual user")
  * )
  */
-Flight::route('GET /admin/users/@id', function($id){
-  if(Flight::get('user')['id'] != $id) throw new Exception("This user is not for you.", 401);
-  Flight::json(Flight::userService()->get_by_id($id));
+Flight::route('GET /admin/users/@id', function ($id) {
+    if (Flight::get('user')['id'] != $id) {
+        throw new Exception("This user is not for you.", 401);
+    }
+    Flight::json(Flight::userService()->get_by_id($id));
 });
 
 /**
@@ -37,8 +39,8 @@ Flight::route('GET /admin/users/@id', function($id){
  *     @OA\Response(response="200", description="Fetch individual user")
  * )
  */
-Flight::route('GET /users/@token', function($token){
-  Flight::json(Flight::userService()->get_user_by_token($token));
+Flight::route('GET /users/@token', function ($token) {
+    Flight::json(Flight::userService()->get_user_by_token($token));
 });
 
 /**
@@ -55,9 +57,9 @@ Flight::route('GET /users/@token', function($token){
  *     @OA\Response(response="200", description="Update user based on parameter")
  * )
  */
-Flight::route('PUT /admin/user/@id', function($id){
-  $data = Flight::request()->data->getData();
-  Flight::json(Flight::userService()->update($id, $data));
+Flight::route('PUT /admin/user/@id', function ($id) {
+    $data = Flight::request()->data->getData();
+    Flight::json(Flight::userService()->update($id, $data));
 });
 
  /**
@@ -82,34 +84,36 @@ Flight::route('PUT /admin/user/@id', function($id){
   *     )
   * )
   */
- Flight::route('POST /register', function(){
-   $data = Flight::request()->data->getData();
-   $email = Flight::request()->data->email;
-   $password = Flight::request()->data->password;
+ Flight::route('POST /register', function () {
+     $data = Flight::request()->data->getData();
+     $email = Flight::request()->data->email;
+     $password = Flight::request()->data->password;
 
-   if(strlen($password) < 8) throw new \Exception("The password must have at least 8 characters.", 400);
+     if (strlen($password) < 8) {
+         throw new \Exception("The password must have at least 8 characters.", 400);
+     }
 
-   if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-     Flight::json(array(
+     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+         Flight::json(array(
        'status' => 'error',
        'message' => 'The email ' . $email . ' is not valid.'
      ));
-     die();
-   }
+         die();
+     }
 
-   $hashed_password = strtoupper(hash("sha1", $password));
-   $first_5_hash = substr($hashed_password, 0, 5);
-   $remaining_hash = substr($hashed_password, 5);
-   $response = file_get_contents('http://api.pwnedpasswords.com/range/'. $first_5_hash);
+     $hashed_password = strtoupper(hash("sha1", $password));
+     $first_5_hash = substr($hashed_password, 0, 5);
+     $remaining_hash = substr($hashed_password, 5);
+     $response = file_get_contents('http://api.pwnedpasswords.com/range/'. $first_5_hash);
 
-   if(strpos($response, $remaining_hash) !== false){ //localy check is the remaining part of the pass in the db
-     Flight::json("Please choose another password.");
-     die();
-   }else{
-     echo "";
-   }
-   Flight::userService()->register($data);
-   Flight::json(["message" => "Conformation email has been sent. Please confirm your account."]);
+     if (strpos($response, $remaining_hash) !== false) { //localy check is the remaining part of the pass in the db
+         Flight::json("Please choose another password.");
+         die();
+     } else {
+         echo "";
+     }
+     Flight::userService()->register($data);
+     Flight::json(["message" => "Conformation email has been sent. Please confirm your account."]);
  });
 
  /**
@@ -130,9 +134,9 @@ Flight::route('PUT /admin/user/@id', function($id){
  *     )
  * )
   */
- Flight::route('POST /login', function(){
-   Flight::json(Flight::jwt(Flight::userService()->login(Flight::request()->data->getData())));
-   // $data = Flight::request()->data->getData();
+ Flight::route('POST /login', function () {
+     Flight::json(Flight::jwt(Flight::userService()->login(Flight::request()->data->getData())));
+     // $data = Flight::request()->data->getData();
    // Flight::json(Flight::userService()->login($data));
  });
 
@@ -142,11 +146,8 @@ Flight::route('PUT /admin/user/@id', function($id){
   *     @OA\Response(response="200", description="Message upon successfull activation.")
   * )
   */
- Flight::route('GET /confirm/@token', function($token){
-    Flight::json(Flight::userService()->confirm($token));
-   header("Location: ".'//'.$_SERVER["SERVER_NAME"].str_replace("/rest/index.php","/login.html",$_SERVER["SCRIPT_NAME"]));
-   exit();
+ Flight::route('GET /confirm/@token', function ($token) {
+     Flight::json(Flight::userService()->confirm($token));
+     header("Location: ".'//'.$_SERVER["SERVER_NAME"].str_replace("/rest/index.php", "/login.html", $_SERVER["SCRIPT_NAME"]));
+     exit();
  });
-
-
-?>

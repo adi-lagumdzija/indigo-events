@@ -1,4 +1,5 @@
 <?php
+
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -31,17 +32,17 @@ Flight::register('eventTypeService', 'EventTypeService');
 Flight::register('reservationService', 'ReservationService');
 
 
-Flight::map('error', function(Exception $ex){
+Flight::map('error', function (Exception $ex) {
     // Handle error
     Flight::json(['message' => $ex->getMessage()], 500);
 });
 
 /* utility function for reading query parameters from URL */
-Flight::map('query', function($name, $default_value = NULL){
-  $request = Flight::request();
-  $query_param = @$request->query->getData()[$name];
-  $query_param = $query_param ? $query_param : $default_value;
-  return urldecode($query_param ?? '');
+Flight::map('query', function ($name, $default_value = null) {
+    $request = Flight::request();
+    $query_param = @$request->query->getData()[$name];
+    $query_param = $query_param ? $query_param : $default_value;
+    return urldecode($query_param ?? '');
 });
 
 Flight::map('header', function ($name) {
@@ -51,10 +52,10 @@ Flight::map('header', function ($name) {
 });
 
 /* REST API documentation endpoint */
-Flight::route('GET /docs.json', function(){
-  $openapi = \OpenApi\scan(['routes']);
-  header('Content-Type: application/json');
-  echo $openapi->toJson();
+Flight::route('GET /docs.json', function () {
+    $openapi = \OpenApi\scan(['routes']);
+    header('Content-Type: application/json');
+    echo $openapi->toJson();
 });
 
 /* utility function for generating JWT token */
@@ -101,4 +102,3 @@ require_once __DIR__.'/routes/EventRoutes.php';
 require_once __DIR__.'/routes/ReservationRoutes.php';
 
 Flight::start();
-?>

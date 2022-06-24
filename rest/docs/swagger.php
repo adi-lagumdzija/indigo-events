@@ -1,7 +1,8 @@
 <?php
+
 header("Access-Control-Allow-Origin: *");
 
-require_once (__DIR__."/../config/config.php");
+require_once(__DIR__."/../config/config.php");
 
 error_reporting(1);
 ini_set('display_errors', 1);
@@ -20,5 +21,5 @@ if (array_key_exists('send', $_GET)) {
 
         header('Content-Type: application/json');
         echo $openapi->toJson();
-    }        
+    }
 }

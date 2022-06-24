@@ -13,8 +13,7 @@
  *       description="Added event type to system.")
  * )
  */
-Flight::route('POST /add/eventType', function(){
-  $data = Flight::request()->data->getData();
-  Flight::json(Flight::eventTypeService()->add_event_type($data));
+Flight::route('POST /add/eventType', function () {
+    $data = Flight::request()->data->getData();
+    Flight::json(Flight::eventTypeService()->add_event_type($data));
 });
-?>

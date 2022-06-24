@@ -5,8 +5,8 @@
  *     @OA\Response(response="200", description="Fetch individual reservation")
  * )
  */
-Flight::route('GET /reservation/@id', function($id){
-  Flight::json(Flight::reservationService()->get_reservation_by_id($id));
+Flight::route('GET /reservation/@id', function ($id) {
+    Flight::json(Flight::reservationService()->get_reservation_by_id($id));
 });
 
 /**
@@ -14,9 +14,9 @@ Flight::route('GET /reservation/@id', function($id){
  *         @OA\Response( response=200, description="List of reservations.")
  * )
  */
-Flight::route('GET /user/reservations', function(){
-  $user = Flight::get('user');
-  Flight::json(Flight::reservationService()->get_user_reservations($user));
+Flight::route('GET /user/reservations', function () {
+    $user = Flight::get('user');
+    Flight::json(Flight::reservationService()->get_user_reservations($user));
 });
 
 /**
@@ -31,9 +31,9 @@ Flight::route('GET /user/reservations', function(){
  *       description="Added reservation to system.")
  * )
  */
-Flight::route('POST /user/add/reservation/@event_id', function($event_id){
-  $data = Flight::request()->data->getData();
-  Flight::json(Flight::reservationService()->add_reservation($data, $event_id, Flight::get('user')['id']));
+Flight::route('POST /user/add/reservation/@event_id', function ($event_id) {
+    $data = Flight::request()->data->getData();
+    Flight::json(Flight::reservationService()->add_reservation($data, $event_id, Flight::get('user')['id']));
 });
 
 /**
@@ -49,8 +49,7 @@ Flight::route('POST /user/add/reservation/@event_id', function($event_id){
  *       description="Cancelled event reservation.")
  * )
  */
-Flight::route('PUT /user/delete/reservation/@id', function($id){
-  Flight::json(Flight::reservationService()->update($id, Flight::request()->data->getData()));
-//  Flight::json(["message" => "deleted"]);
+Flight::route('PUT /user/delete/reservation/@id', function ($id) {
+    Flight::json(Flight::reservationService()->update($id, Flight::request()->data->getData()));
+    //  Flight::json(["message" => "deleted"]);
 });
-?>

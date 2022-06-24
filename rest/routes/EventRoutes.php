@@ -8,13 +8,13 @@
  *     @OA\Response(response="200", description="List users from database")
  * )
  */
-Flight::route('GET /events', function(){
-  $offset = Flight::query('offset', 0);
-  $limit = Flight::query('limit', 25);
-  $search = Flight::query('search');
-  $order = Flight::query('order', "-id");
+Flight::route('GET /events', function () {
+    $offset = Flight::query('offset', 0);
+    $limit = Flight::query('limit', 25);
+    $search = Flight::query('search');
+    $order = Flight::query('order', "-id");
 
-  Flight::json(Flight::eventService()->get_events($search, $offset, $limit, $order));
+    Flight::json(Flight::eventService()->get_events($search, $offset, $limit, $order));
 });
 
 /**
@@ -23,8 +23,8 @@ Flight::route('GET /events', function(){
  *     @OA\Response(response="200", description="Fetch individual event")
  * )
  */
-Flight::route('GET /event/@id', function($id){
-  Flight::json(Flight::eventService()->get_by_id($id));
+Flight::route('GET /event/@id', function ($id) {
+    Flight::json(Flight::eventService()->get_by_id($id));
 });
 
 /**
@@ -33,8 +33,8 @@ Flight::route('GET /event/@id', function($id){
  *     @OA\Response(response="200", description="Fetch events by city")
  * )
  */
-Flight::route('GET /event/@city', function($city){
-  Flight::json(Flight::eventService()->get_event_by_city($city));
+Flight::route('GET /event/@city', function ($city) {
+    Flight::json(Flight::eventService()->get_event_by_city($city));
 });
 
 /**
@@ -58,8 +58,7 @@ Flight::route('GET /event/@city', function($city){
  *       description="Added event to system.")
  * )
  */
-Flight::route('POST /admin/add/event', function(){
-  $data = Flight::request()->data->getData();
-  Flight::json(Flight::eventService()->add_event($data));
+Flight::route('POST /admin/add/event', function () {
+    $data = Flight::request()->data->getData();
+    Flight::json(Flight::eventService()->add_event($data));
 });
-?>

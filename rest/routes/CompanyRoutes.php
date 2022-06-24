@@ -5,7 +5,6 @@
  *     @OA\Response(response="200", description="Fetch individual company")
  * )
  */
-Flight::route('GET /company/@name', function($name){
-  Flight::json(Flight::companyService()->get_company_by_name($name));
+Flight::route('GET /company/@name', function ($name) {
+    Flight::json(Flight::companyService()->get_company_by_name($name));
 });
-?>
