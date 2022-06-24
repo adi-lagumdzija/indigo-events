@@ -7,8 +7,7 @@ class Events {
         e.preventDefault();
         $("#add-event-collapse").collapse('toggle');
      });
-     
-     function addingEvent(){
+
      $("#add-event-form").validate({
         rules: {
           name: "required",
@@ -27,10 +26,10 @@ class Events {
            const Event = Utility.jsonizeForm("#add-event-form");
            console.log(Event)
            $('#overlay').fadeIn();
-            //  Events.addingEvent(Event);
+             Events.addEvent(Event);
           }
        });
-     }
+     
      
     }
     static addEvent (Event) {
