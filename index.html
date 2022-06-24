@@ -30,6 +30,9 @@
               <li class="nav-item">
                 <a class="nav-link" href="login.html">Login</a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link" onclick="doLogout()">Logout</a>
+              </li>
             </ul>
           </div>
         </div>
@@ -286,6 +289,10 @@
                     return showPage(+$(this).text());
                 })
     });
+    function doLogout() { 
+                window.localStorage.clear()
+                window.location = 'login.html'
+            }
 </script>
 
 

@@ -8,5 +8,8 @@
     },
     "require-dev": {
         "heroku/heroku-buildpack-php": "^220.0"
+    },
+    "config": {
+        "platform-check": false
     }
 }

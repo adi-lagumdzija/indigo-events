@@ -63,7 +63,7 @@ Flight::route('GET /docs.json', function(){
 //     return ["token" => $jwt];
 // });
 
-<<<<<<< HEAD
+
 // middleware method for login
 Flight::route('/*', function(){
   //return TRUE;
@@ -92,7 +92,6 @@ Flight::route('/*', function(){
     }
   }
 });
-=======
 // // middleware method for login
 // Flight::route('/*', function(){
 //   //return TRUE;
@@ -115,7 +114,6 @@ Flight::route('/*', function(){
 //     }
 //   }
 // });
->>>>>>> 10192611ea40f7a372e556b61c87f2efde535231
 
 
 
