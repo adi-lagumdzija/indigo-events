@@ -72,42 +72,11 @@
         </form>
       
             
+    <script src="./js/controllers/events.js"></script>
+
     <script>
-         $("#collapse-trigger").click(function (e) { 
-         e.preventDefault();
-         $("#add-event-collapse").collapse('toggle');
-      });
-
-      $("#add-event-form").validate({
-         rules: {
-           name: "required",
-           status: "required",
-           city: "required",
-           address: "required",
-           date_held: "required",
-           num_of_tickets: "required",
-           description: "required",
-           type_name: "required",        
-           company_name: "required",        
-         },
-         submitHandler: function(form, event) {
-            event.preventDefault();
-            const Event = Utility.jsonizeForm("#add-event-form");
-            console.log(Event)
-            $('#overlay').fadeIn();
-            addEvent(Event);
-         }
-      });
-      function addEvent (Event) {
-      RestClient.post("rest/admin/add/event", Event, function (data) {
-         toastr.success("New event has been added!");
-         $("#add-event-form").trigger("reset");
-         $('#overlay').fadeOut();
-      })
-   }
+        Events.init();
     </script>
-
-
 
 
 
