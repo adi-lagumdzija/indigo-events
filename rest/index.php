@@ -58,10 +58,10 @@ Flight::route('GET /docs.json', function(){
 });
 
 /* utility function for generating JWT token */
-// Flight::map('jwt', function ($user) {
-//     $jwt = \Firebase\JWT\JWT::encode(["exp" => (time() + Config::JWT_TOKEN_TIME), "id" => $user["id"], "r" => $user["role"]], Config::JWT_SECRET, 'HS256');
-//     return ["token" => $jwt];
-// });
+Flight::map('jwt', function ($user) {
+    $jwt = \Firebase\JWT\JWT::encode(["exp" => (time() + Config::JWT_TOKEN_TIME), "id" => $user["id"], "r" => $user["role"]], Config::JWT_SECRET, 'HS256');
+    return ["token" => $jwt];
+});
 
 
 // middleware method for login

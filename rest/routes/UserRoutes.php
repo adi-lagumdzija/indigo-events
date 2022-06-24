@@ -143,9 +143,9 @@ Flight::route('PUT /admin/user/@id', function($id){
   * )
   */
  Flight::route('GET /confirm/@token', function($token){
-   Flight::json(Flight::jwt(Flight::userService()->confirm($token)));
-//   header("Location: ".'//'.$_SERVER["SERVER_NAME"].str_replace("/rest/index.php","/login.html",$_SERVER["SCRIPT_NAME"]));
-   //exit();
+    Flight::json(Flight::userService()->confirm($token));
+   header("Location: ".'//'.$_SERVER["SERVER_NAME"].str_replace("/rest/index.php","/login.html",$_SERVER["SCRIPT_NAME"]));
+   exit();
  });
 
 
