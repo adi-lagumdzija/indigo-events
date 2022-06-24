@@ -28,7 +28,7 @@
                 <a class="nav-link" href="#">My Events</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Login</a>
+                <a class="nav-link" href="login.html">Login</a>
               </li>
             </ul>
           </div>
@@ -87,17 +87,16 @@
           for(let i = 0; i < data.length; i++){
             html += `
             <div class="cardd">
-        <div class="cardd-image"> <img src="https://www.novilist.hr/wp-content/uploads/2021/06/Jala-Brat-i-Buba-Corelli.jpg" alt="" srcset=""> </div>
-        <div class="cardd-info">
+            <div class="cardd-image"> <img src="Frame 1-11.png" alt="" srcset=""> </div>
+            <div class="cardd-info">
             <h3 class="eventt">`+ data[i].name +`</h3>
             <p>`+ data[i].description +`</p>
             <p>📍 ` + data[i].city +`</p>
             <p>🗓️ ` + data[i].date_held +`</p>
             <p>
-          <button type="button" class="btn btn-primary" onclick="showModal(`+data[i].id+`)">
+            <button type="button" class="btn btn-primary" onclick="showModal(${data[i].id})">
             View More
           </button></p>
-
         </div>
     </div>
             `;
@@ -107,13 +106,15 @@
           setTimeout(() => { console.log("Wait"); }, 5000);
         });
 
+        
 
         function showModal(id){
         $.get('rest/event/'+id, function(data){
             console.log(data);
-      //  $("#exampleModal .modal-body").html(id);
-        $("#name").val(data.name);
-        $("#exampleModal").modal("show");
+            // console.log("aaa")
+            // $("#exampleModal .modal-body").html(id);
+            $("#name").val(data.name);
+            $("#exampleModal").modal("show");
       });
     }
 
@@ -124,26 +125,7 @@
 
       </script>
 
-      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <input id="name" type="text"/>
-          <input id="id" type="text"/>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" onclick="makeReservation()">Make reservation</button>
-        </div>
-      </div>
-    </div>
-  </div>
+      
         <!-- <div class="cardd"> -->
 
             <!-- <div class="cardd-image"> <img src="https://www.novilist.hr/wp-content/uploads/2021/06/Jala-Brat-i-Buba-Corelli.jpg" alt="" srcset=""> </div>
@@ -242,7 +224,9 @@
          <li class="page-item next-page"><a class="page-link" href="#">Next</a></li> -->
 
      </div>
+     
 </div>
+
 <script type="text/javascript">
     function getPageList(totalPages, page, maxLength){
         function range(start, end){
@@ -305,6 +289,7 @@
 </script>
 
 
+    
 
 
 
@@ -316,4 +301,27 @@
 
 
 </body>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          
+        </div>
+        <p style="text-align: center;">Enter Number of Ticket you want to reserve.</p>
+        <div class="modal-body">
+          
+        </div>
+        <input id="name" type="text"/>
+          <input id="id" type="text" placeholder="Number of tickets"/>  
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" onclick="makeReservation()">Make reservation</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </html>

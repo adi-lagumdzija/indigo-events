@@ -4,6 +4,6 @@
         "zircote/swagger-php": "3.*",
         "firebase/php-jwt": "^6.2",
         "swiftmailer/swiftmailer": "6.0",
-        "heroku/heroku-buildpack-php": "^220.0"
+        "components/jquery": "^3.6"
     }
 }

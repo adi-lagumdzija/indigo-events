@@ -41,7 +41,7 @@ Flight::map('query', function($name, $default_value = NULL){
   $request = Flight::request();
   $query_param = @$request->query->getData()[$name];
   $query_param = $query_param ? $query_param : $default_value;
-  return urldecode($query_param);
+  return urldecode($query_param ?? '');
 });
 
 Flight::map('header', function ($name) {
@@ -58,11 +58,12 @@ Flight::route('GET /docs.json', function(){
 });
 
 /* utility function for generating JWT token */
-Flight::map('jwt', function ($user) {
-    $jwt = \Firebase\JWT\JWT::encode(["exp" => (time() + Config::JWT_TOKEN_TIME), "id" => $user["id"], "r" => $user["role"]], Config::JWT_SECRET, 'HS256');
-    return ["token" => $jwt];
-});
+// Flight::map('jwt', function ($user) {
+//     $jwt = \Firebase\JWT\JWT::encode(["exp" => (time() + Config::JWT_TOKEN_TIME), "id" => $user["id"], "r" => $user["role"]], Config::JWT_SECRET, 'HS256');
+//     return ["token" => $jwt];
+// });
 
+<<<<<<< HEAD
 // middleware method for login
 Flight::route('/*', function(){
   //return TRUE;
@@ -91,6 +92,30 @@ Flight::route('/*', function(){
     }
   }
 });
+=======
+// // middleware method for login
+// Flight::route('/*', function(){
+//   //return TRUE;
+//   //perform JWT decode
+//   $path = Flight::request()->url;
+//   if ($path == '/login' || $path == '/docs.json' || $path == '/events' || $path == '/event/@id' || $path == '/event/@city') return TRUE; // exclude login route from middleware
+
+//   $headers = getallheaders();
+//   if (@!$headers['Authorization']){
+//     Flight::json(["message" => "Authorization is missing"], 403);
+//     return FALSE;
+//   }else{
+//     try {
+//       $decoded = (array)JWT::decode($headers['Authorization'], new Key(Config::JWT_SECRET(), 'HS256'));
+//       Flight::set('user', $decoded);
+//       return TRUE;
+//     } catch (\Exception $e) {
+//       Flight::json(["message" => "Authorization token is not valid"], 403);
+//       return FALSE;
+//     }
+//   }
+// });
+>>>>>>> 10192611ea40f7a372e556b61c87f2efde535231
 
 
 
