@@ -13,7 +13,7 @@
   <main>
     <div class="container marketing">
 
-  <!-- Three columns of text below the carousel -->
+      <!-- Three columns of text below the carousel -->
       <div id="event-list" class="row">
         <div class="d-flex justify-content-center">
           <div class="spinner-border" role="status">
@@ -23,72 +23,72 @@
     </div>
 
   </main>
-  </body>
+</body>
 
-  <script src="js\jquery-3.6.0.min.js"></script>
-  <script src="js\bootstrap.bundle.min.js"></script>
+<script src="js\jquery-3.6.0.min.js"></script>
+<script src="js\bootstrap.bundle.min.js"></script>
 
 
 
-  <script>
-    $.get("rest/events", function(data){
+<script>
+  $.get("rest/events", function(data) {
 
-      $("#event-list").html("");
+    $("#event-list").html("");
 
-      var html = "";
-      for(let i = 0; i < data.length; i++){
-        html += `
+    var html = "";
+    for (let i = 0; i < data.length; i++) {
+      html += `
         <div class="col-lg-4">
           <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
-          <h2>`+ data[i].name +`</h2>
-          <p>`+ data[i].description +`</p>
+          <h2>` + data[i].name + `</h2>
+          <p>` + data[i].description + `</p>
           <p>
-          <button type="button" class="btn btn-primary" onclick="showModal(`+data[i].id+`)">
+          <button type="button" class="btn btn-primary" onclick="showModal(` + data[i].id + `)">
             Launch demo modal
           </button></p>
         </div>`;
-      }
-      $("#event-list").html(html);
+    }
+    $("#event-list").html(html);
+    console.log(data);
+
+
+  });
+
+  function showModal(id) {
+    $.get('rest/event/' + id, function(data) {
       console.log(data);
-
-      
-    });
-
-    function showModal(id){
-      $.get('rest/event/'+id, function(data){
-        console.log(data);
       //  $("#exampleModal .modal-body").html(id);
       $("#name").val(data.name);
-        $("#exampleModal").modal("show");
-      });
-    }
+      $("#exampleModal").modal("show");
+    });
+  }
 
-    function makeReservation(){
-      alert("Reservation created.");
-    }
-  </script>
+  function makeReservation() {
+    alert("Reservation created.");
+  }
+</script>
 
 
-  <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <input id="name" type="text"/>
-          <input id="id" type="text"/>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" onclick="makeReservation()">Make reservation</button>
-        </div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <input id="name" type="text" />
+        <input id="id" type="text" />
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" onclick="makeReservation()">Make reservation</button>
       </div>
     </div>
   </div>
+</div>
 
 </html>

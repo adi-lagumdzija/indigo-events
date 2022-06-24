@@ -1,9 +1,9 @@
 var RegisterService = {
-  init: function(){
-    // var token = localStorage.getItem("token");
-    // if (token){
-    //   window.location.replace("index.html");
-    // }
+  init: function() {
+    var token = localStorage.getItem("token");
+    if (token){
+      window.location.replace("index.html");
+    }
     $('#register-form').validate({
       submitHandler: function(form) {
         var entity = Object.fromEntries((new FormData(form)).entries());
@@ -11,7 +11,7 @@ var RegisterService = {
       }
     });
   },
-  register: function(entity){
+  register: function(entity) {
     $.ajax({
       url: 'rest/register',
       type: 'POST',

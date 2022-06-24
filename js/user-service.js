@@ -1,7 +1,7 @@
 var UserService = {
-  init: function(){
+  init: function() {
     var token = localStorage.getItem("token");
-    if (token){
+    if (token) {
       window.location.replace("index.html");
     }
     $('#login-form').validate({
@@ -11,7 +11,7 @@ var UserService = {
       }
     });
   },
-  login: function(entity){
+  login: function(entity) {
     $.ajax({
       url: 'rest/login',
       type: 'POST',
@@ -29,7 +29,7 @@ var UserService = {
     });
   },
 
-  logout: function(){
+  logout: function() {
     localStorage.clear();
     window.location.replace("login.html");
   },
