@@ -9,7 +9,7 @@ use Firebase\JWT\JWT;
 
 class UserService extends BaseService
 {
-    // private $smtpClient;
+    private $smtpClient;
 
     public function __construct()
     {
@@ -105,7 +105,7 @@ class UserService extends BaseService
         $db_user = $this->update($db_user['id'], ['token' => md5(random_bytes(16))]);
 
         // send email
-    //  $this->smtpClient->send_user_recovery_token($db_user);
+        $this->smtpClient->send_user_recovery_token($db_user);
     }
 
     public function reset($user)
