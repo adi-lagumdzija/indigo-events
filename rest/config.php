@@ -2,7 +2,7 @@
 class Config {
 
   const DATE_FORMAT = "Y-m-d H:i:s";
-//  const JWT_SECRET = "y4KvQcZVqn3F7uxQvcFk";
+  const JWT_SECRET = "y4KvQcZVqn3F7uxQvcFk";
   const JWT_TOKEN_TIME = 604800;
 
   const DB_HOST = "eu-cdbr-west-02.cleardb.net";
@@ -13,7 +13,7 @@ class Config {
   const SMTP_HOST = "smtp.sendgrid.net";
   const SMTP_PORT = 587;
   const SMTP_USER = "#";
-  const SMTP_PASSWORD = "#";
+ const SMTP_PASSWORD = "#";
 
 
   public static function JWT_SECRET(){

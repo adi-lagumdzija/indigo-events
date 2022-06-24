@@ -32,12 +32,14 @@ class ReservationService extends BaseService{
       return parent::add($reservation);
   }
 
-  public function delete($user, $id){
-    $reservation = $this->dao->get_reservation_by_id($id);
+  public function update_reservation($user, $id, $reservationdetails){
+    $reservation = $this->dao->get_by_id($id);
     if ($reservation['user_id'] != $user['id']){
       throw new Exception("This account cannot make any modifications.");
     }
-    parent::update($user, $id, ['status' => 'ARCHIVED']);
+    // unset($entity['user_id']);
+    // unset($entity['status']);
+    return $this->update($id, $reservationdetails);
   }
 }
 ?>

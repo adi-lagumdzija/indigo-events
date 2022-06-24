@@ -35,4 +35,22 @@ Flight::route('POST /user/add/reservation/@event_id', function($event_id){
   $data = Flight::request()->data->getData();
   Flight::json(Flight::reservationService()->add_reservation($data, $event_id, Flight::get('user')['id']));
 });
+
+/**
+*  @OA\Put(path="/user/delete/reservation/{id}", description = "Add event type to system.", tags={"reservation"},
+*   @OA\RequestBody(description="Remove reservation", required=true,
+*     @OA\MediaType(mediaType="application/json",
+*    		@OA\Schema(
+*         @OA\Property(property="status", type="string", example="CANCELLED", description="Reservation status")
+*     )
+*      )),
+ *    @OA\Response(
+ *       response="200",
+ *       description="Cancelled event reservation.")
+ * )
+ */
+Flight::route('PUT /user/delete/reservation/@id', function($id){
+  Flight::json(Flight::reservationService()->update($id, Flight::request()->data->getData()));
+//  Flight::json(["message" => "deleted"]);
+});
 ?>
